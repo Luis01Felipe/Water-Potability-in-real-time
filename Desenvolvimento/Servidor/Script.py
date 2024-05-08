@@ -2,16 +2,18 @@
 # retornando a resposta para o cliente, por fim ira converter o json/csv para sql
 
 import pandas as pd
+import tf
+import numpy as np
 from tensorflow.keras.models import load_model
 
 # Carregar os dados
 df = pd.read_json('../Dados/data.json')
 
 # Armazenar a coluna "circuito" em uma variável separada
-circuito = df['circuito']
+circuito = df['Circuito']
 
 # Remover a coluna "circuito" do DataFrame para a análise
-df = df.drop(columns=['circuito'])
+df = df.drop(columns=['Circuito'])
 
 # Pré-processamento dos dados
 # Substitua os valores ausentes pela média da coluna
@@ -27,6 +29,9 @@ X = df.iloc[:, :4]
 # Fazer previsões
 predictions = model.predict(X)
 
+if np.isnan(predictions).any():
+    predictions = np.nan_to_num(predictions)
+
 # Select the first column of the predictions
 predictions = predictions[:, 0]
 
@@ -34,9 +39,9 @@ predictions = predictions[:, 0]
 df['Predicted_Potability'] = predictions
 
 # Adicionar a coluna "circuito" de volta ao DataFrame
-df['circuito'] = circuito
+df['Circuito'] = circuito
 
 # Exportar o DataFrame como um novo arquivo JSON
-df.to_json('water_potability_predicted.json', orient='records')
+df.to_json('../Dados/water_potability_predicted.json', orient='records')
 
 # Mandar pro Firebase Real database os dados

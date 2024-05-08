@@ -1,16 +1,30 @@
 [
   {
-    "circuito": "Circuito 1",
+    "Circuito": "1",
     "pH": "",
     "Solids": 20791.318980747026,
     "Conductivity": 564.3086541722439,
     "Turbidity": 2.9631353806316407
   },
   {
-    "circuito": "Circuito 2",
+    "Circuito": "2",
     "pH": 3.71608007538699,
     "Solids": 18630.057857970347,
     "Conductivity": 592.8853591348523,
     "Turbidity": 4.500656274942408
+  },
+  {
+    "Circuito": "3",
+    "pH": 9.794717848521511,
+    "Solids": 12490.55827605843,
+    "Conductivity": 576.0460834739301,
+    "Turbidity": 2.807129774600525
+  },
+  {
+    "Circuito": "4",
+    "pH": 5.376078292034362,
+    "Solids": 36026.40155635119,
+    "Conductivity": 347.56506646308213,
+    "Turbidity": 3.629250321506012
   }
 ]
