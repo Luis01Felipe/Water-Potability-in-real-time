@@ -1,0 +1,4 @@
+# TODO: Renomear arquivo 'MachineLearning-4_Colunas-json.py' para 'MachineLearning.py' assim que for realmente decidido o uso do JSON e da coluna de Solidos
+# TODO: Realizar essas alterações no código
+# TODO:
+

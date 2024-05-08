@@ -1,0 +1,2 @@
+# TODO: # Este arquivo ira armazenar os resultados obtidos nos testes realizados
+# FORMATO: conjunto de testes {j} obteve X% de precisão media, utilizando X epochs, Y batch_size e Z learning_rate')
