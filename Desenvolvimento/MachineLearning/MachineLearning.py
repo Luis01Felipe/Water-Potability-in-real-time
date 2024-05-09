@@ -21,8 +21,6 @@ while True:
     entrada = df[['pH', 'Solids', 'Conductivity', 'Turbidity']]
     saida = df['Potability']
 
-    num_colunas_entrada = entrada.shape[1]
-
     # Dividi os dados em conjuntos de treinamento e teste
     indices = np.arange(entrada.shape[0])
     np.random.shuffle(indices)
@@ -58,13 +56,13 @@ while True:
     # Salva o modelo se a precisão for maior que a máxima registrada
     if accuracy > max_accuracy:
         max_accuracy = accuracy
-        nome_modelo = (f'modelo_agua-{accuracy:.4f}-{optimizer_name}-{num_colunas_entrada}_Colunas.h5'
+        nome_modelo = (f'modelo_agua-{accuracy:.4f}-{optimizer_name}.h5'
                        .replace('/', '_'))
         model.save(f'Modelos/{nome_modelo}')
         print(f"Modelo {i} de precisão {accuracy * 100:.4f}% salvo com sucesso!")
     # Ao chegar na precisão ideal, salva o modelo e encerra o script
     elif accuracy > ideal_accuracy:
-        nome_modelo = (f'modelo_agua-IDEAL-{accuracy:.4f}-{optimizer_name}-{num_colunas_entrada}_Colunas.h5'
+        nome_modelo = (f'modelo_agua-IDEAL-{accuracy:.4f}-{optimizer_name}.h5'
                        .replace('/', '_'))
         model.save(f'Modelos/{nome_modelo}')
         break

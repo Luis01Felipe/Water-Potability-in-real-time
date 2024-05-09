@@ -42,6 +42,5 @@ df['Predicted_Potability'] = predictions
 df['Circuito'] = circuito
 
 # Exportar o DataFrame como um novo arquivo JSON
-df.to_json('../Dados/water_potability_predicted.json', orient='records')
-
+df.to_json('../Dados/water_potability_predicted.json', orient='columns')
 # Mandar pro Firebase Real database os dados
