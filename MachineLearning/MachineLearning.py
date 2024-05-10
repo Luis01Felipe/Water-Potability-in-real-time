@@ -37,14 +37,10 @@ while True:
     entrada_train, entrada_test = entrada.iloc[train_idx], entrada.iloc[test_idx]
     saida_train, saida_test = saida.iloc[train_idx], saida.iloc[test_idx]
 
-    # Converte os rótulos para uma representação categórica
-    saida_train = tf.keras.utils.to_categorical(saida_train)
-    saida_test = tf.keras.utils.to_categorical(saida_test)
-
     # Criação do modelo
     model = tf.keras.Sequential([
         tf.keras.layers.Dense(256, activation='relu'),
-        tf.keras.layers.Dense(2, activation='softmax')
+        tf.keras.layers.Dense(1, activation='sigmoid')
     ])
     optimizer_name = 'RMSprop'
     optimizer = tf.keras.optimizers.RMSprop(learning_rate=0.001,

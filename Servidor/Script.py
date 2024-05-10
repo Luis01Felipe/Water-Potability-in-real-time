@@ -1,3 +1,5 @@
+import sys
+
 import schedule
 import time
 import pytz
@@ -6,18 +8,18 @@ import pandas as pd
 from tensorflow.keras.models import load_model
 import pyrebase
 
+config = {
+    "apiKey": "AIzaSyCEQbBuB7PbpfEWifNVJKxKqPOC55PkKCQ",
+    "authDomain": "aps-5-semestre.firebaseapp.com",
+    "databaseURL": "https://aps-5-semestre-default-rtdb.firebaseio.com",
+    "storageBucket": "aps-5-semestre.appspot.com",
+}
+
+firebase = pyrebase.initialize_app(config)
+db = firebase.database()
+
 
 def send_to_firebase(df):
-    config = {
-        "apiKey": "AIzaSyCEQbBuB7PbpfEWifNVJKxKqPOC55PkKCQ",
-        "authDomain": "aps-5-semestre.firebaseapp.com",
-        "databaseURL": "https://aps-5-semestre-default-rtdb.firebaseio.com",
-        "storageBucket": "aps-5-semestre.appspot.com",
-    }
-
-    firebase = pyrebase.initialize_app(config)
-    db = firebase.database()
-
     # Converte o DataFrame pra um dictionario
     data_dict = df.to_dict(orient='index')
 
@@ -25,16 +27,22 @@ def send_to_firebase(df):
     data_dict = df.to_dict(orient='index')
 
     # Adiciona 1 ao index para facilitar na interpretação dos dados
-    data_dict = {int(key)+1: value for key, value in data_dict.items()}
+    data_dict = {int(key) + 1: value for key, value in data_dict.items()}
 
     result = db.child("data").set(data_dict)
 
     print("dados enviados para o firebase")
 
 
+def recieve_from_firebase():
+    data = db.child("toProcess").get()
+    return pd.DataFrame(data.val())
+
+
 def job():
     # Carrega os dados
-    df = pd.read_json('../Dados/water_monitoring.json')
+    # df = pd.read_json('../Dados/water_monitoring.json')
+    df = recieve_from_firebase()
 
     # Armazena a coluna "circuito" em uma variável separada
     circuito = df['Circuito']
@@ -55,11 +63,10 @@ def job():
     # Faz as  previsões
     predictions = model.predict(entrada)
 
-    # Seleciona a primeira coluna das previsões
-    predictions = predictions[:, 0]
-
+    print(predictions.tolist())
+    
     # Adiciona as previsões como uma nova coluna no DataFrame
-    df['Predicted_Potability'] = predictions
+    df['Predicted_Potability'] = predictions.tolist()
 
     # Adiciona a coluna "circuito" de volta ao DataFrame
     df['Circuito'] = circuito
@@ -85,6 +92,8 @@ def run_job():
 
 # ------------------------------------------------------ #
 # Main do programa
+
+job()
 
 # Checa a cada 1 minuto para poder atualizar o arquivo JSON
 schedule.every(1).minutes.do(run_job)
