@@ -1,3 +1,1 @@
-# TODO: Arrumar valor da potabilidade que fica sempre repetido
-# TODO: Fazer com que o Script baixe do firebase os dados e então aplique o que tem que fazer
 # TODO: No C#, fazer a tarefa de busca executar a cada 5 minutos, porem, efetuando o agendamento para dali 1 minuto, fazendo com que seja executado aos 06 minutos no fuso horario de brasilia

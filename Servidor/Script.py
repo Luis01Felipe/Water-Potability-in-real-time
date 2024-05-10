@@ -19,16 +19,14 @@ db = firebase.database()
 
 
 def send_to_firebase(df):
-    # Converte o DataFrame pra um dictionario
-    data_dict = df.to_dict(orient='index')
-
-    # Cria um novo dicionario com a orientação na forma de index
+    # Converte o DataFrame pra um dictionario com a orientação na forma de index
     data_dict = df.to_dict(orient='index')
 
     # Adiciona 1 ao index para facilitar na interpretação dos dados
-    data_dict = {int(key) + 1: value for key, value in data_dict.items()}
+    # TODO: Ver se isso realmente é necessario
+    # data_dict = {int(key) + 1: value for key, value in data_dict.items()}
 
-    result = db.child("processed_data").set(data_dict)
+    db.child("processed_data").set(data_dict)
 
     print("dados enviados para o firebase")
 
