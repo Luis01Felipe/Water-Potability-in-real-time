@@ -15,7 +15,7 @@ df = df.apply(pd.to_numeric, errors='coerce')
 df = df.fillna(df.mean())
 
 # Carregar o modelo treinado
-model = load_model('modelo_agua-0.6890-RMSprop-4_Colunas.h5')
+model = load_model('modelo_agua-0.6890-RMSprop.h5')
 
 # Preparar os dados para a previsão
 X = df[['pH', 'Solids', 'Conductivity', 'Turbidity']]

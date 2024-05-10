@@ -26,5 +26,12 @@
     "Solids": 36026.40155635119,
     "Conductivity": 347.56506646308213,
     "Turbidity": 3.629250321506012
+  },
+  {
+    "Circuito": "5",
+    "pH": 7,
+    "Solids": 1000,
+    "Conductivity": 300,
+    "Turbidity": 1
   }
 ]

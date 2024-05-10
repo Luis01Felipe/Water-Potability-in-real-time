@@ -1,0 +1,2 @@
+# TODO: Arrumar valor da potabilidade que fica sempre repetido
+# TODO: Arrumar o arquivo json que conecta ao firebase pois o Github não quer aceita-lo no projeto

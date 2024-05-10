@@ -11,7 +11,7 @@ ideal_accuracy = 0.70
 
 while True:
     # Carregar os dados
-    df = pd.read_json('../../Desenvolvimento/Dados/water_potability.json')
+    df = pd.read_json('../../../Dados/water_dataset.json')
 
     # Substitua os valores ausentes pela média da coluna
     df = df.apply(pd.to_numeric, errors='coerce')

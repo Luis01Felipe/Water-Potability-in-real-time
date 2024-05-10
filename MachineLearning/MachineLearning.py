@@ -5,13 +5,20 @@ import sys
 
 i = 0
 # Vai começar a salvar a partir de 65%
-max_accuracy = 0.65
+max_accuracy = 0.62
 # Vai parar de salvar a partir de 70%
 ideal_accuracy = 0.70
 
+# Carregar os dados
+df = pd.read_json('../Dados/water_dataset.json')
+
+# Substituir espaços vazios por NaN
+df.replace("", np.nan, inplace=True)
+
+# Remover linhas com NaN
+df.dropna(inplace=True)
+
 while True:
-    # Carregar os dados
-    df = pd.read_json('../Dados/water_potability.json')
 
     # Substitua os valores ausentes pela média da coluna
     df = df.apply(pd.to_numeric, errors='coerce')

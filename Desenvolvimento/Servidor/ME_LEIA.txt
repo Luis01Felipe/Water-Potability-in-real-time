@@ -1,2 +1,0 @@
-# TODO: Renomear arquivo 'modelo_agua-0.6890-RMSprop-4_Colunas.h5' para 'modelo_agua.h5'
-# TODO: Adicionar no 'Script.py' a conexão com o Realtime database do Firebase
