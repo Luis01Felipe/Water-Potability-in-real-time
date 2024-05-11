@@ -1,1 +1,12 @@
-#
+# Projeto ULTRA MACHINE LEARNING
+No futuro seria interessante fazer uma maquina capaz de randomizar os seus
+parametros como Epochs, Batch_size, etc para encontrar o melhor modelo e
+fazer com que ela manipule os seus parametros para que vá chegando nos
+melhores parametros, exemplo: se os parametros de 500 no Epochs sempre
+davam o melhor resultado, ela vai seguir vais voltada ao 500, isso para todos
+os paremtros e permitir com que ela salve os modelos e utilize deles para se
+aprimorar. Fazer com que ela salve todos os dados de treino e teste e então
+ao finalizar a execução faça uma media aritmetica de todos esses dados para
+dizer qual Run foi o melhor, em seguida ela verá qual Epochs, Learning Rate,
+Batch_Size e otimizador foram melhores e começara a usar valores mais
+proximos deles.
