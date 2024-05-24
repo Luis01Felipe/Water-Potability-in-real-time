@@ -53,7 +53,7 @@ while True:
     model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
 
     # Treinamento do modelo
-    model.fit(entrada_train, saida_train, epochs=256, verbose=0, batch_size=16)
+    model.fit(entrada_train, saida_train, epochs=256, verbose=1, batch_size=16)
     loss, accuracy = model.evaluate(entrada_test, saida_test)
 
     # Salva o modelo se a precisão for maior que a máxima registrada

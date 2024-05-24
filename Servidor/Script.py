@@ -6,6 +6,17 @@ from datetime import datetime
 import pandas as pd
 from tensorflow.keras.models import load_model
 import pyrebase
+import os
+import re
+
+model_dir = '../MachineLearning/Modelos/'
+
+# Lista todos os arquivos no diretório
+model_files = os.listdir(model_dir)
+
+# Inicializa a precisão máxima e o nome do modelo correspondente
+max_accuracy = 0
+max_accuracy_model = ''
 
 config = {
     "apiKey": "AIzaSyCEQbBuB7PbpfEWifNVJKxKqPOC55PkKCQ",
@@ -37,6 +48,9 @@ def recieve_from_firebase():
 
 
 def job():
+    global max_accuracy
+    global max_accuracy_model
+
     # Carrega os dados do firebase
     df = recieve_from_firebase()
 
@@ -50,8 +64,19 @@ def job():
     df = df.apply(pd.to_numeric, errors='coerce')
     df = df.fillna(df.mean())
 
-    # Carrega o modelo treinado
-    model = load_model('../MachineLearning/Modelos/modelo_agua-0.6584-RMSprop.h5')
+    # Percorre todos os arquivos no diretório
+    for model_file in model_files:
+        # Usa uma expressão regular para extrair a precisão do nome do arquivo
+        match = re.search(r'modelo_agua-(\d+\.\d+)-', model_file)
+        if match:
+            # Converte a precisão para float e verifica se é a maior encontrada até agora
+            accuracy = float(match.group(1))
+            if accuracy > max_accuracy:
+                max_accuracy = accuracy
+                max_accuracy_model = model_file
+
+    # Carrega o modelo com a maior precisão
+    model = load_model(model_dir + max_accuracy_model)
 
     # Prepara os dados para a previsão
     entrada = df.iloc[:, :4]
