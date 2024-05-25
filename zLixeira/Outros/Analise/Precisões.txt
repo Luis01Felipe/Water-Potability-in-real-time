@@ -1,1 +1,0 @@
-# TODO: # Local onde será armazenado a precisão de cada modelo em um conjunto de testes, quando os testes pararem de ser executados e a media for calculada, este arquivo será limpo
