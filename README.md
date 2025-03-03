@@ -3,6 +3,7 @@ Atenção, este repositório não possui todo o conteúdo do projeto, neste repo
 - Script que executa no Servidor
 - Aprendizado de Máquina e Modelo já treinado
 - Aplicativo para a visualição dos dados
+
 Se deseja ver o código do Arduino e a API rest, cheque o repositório: https://github.com/APS-s/Water-Potability-SensorReceiverServer
 ## Principais Tecnologias: 
 ### Python
